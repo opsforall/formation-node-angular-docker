@@ -1,0 +1,67 @@
+services:
+  backend:
+    container_name: backend
+    image: karimarous/formation-backend:1.0.0   
+    ports:
+      - "3000:3000"
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 200M
+        reservations:
+          cpus: '0.1'
+          memory: 100M
+    environment:
+    - DB_NAME=docker
+    - DB_USER=docker
+    - DB_PASSWORD=docker
+    - DB_HOST=db
+    depends_on:
+      - db
+    restart: always
+
+  db:
+    container_name: postgres
+    image: postgres:14
+    volumes:
+      - ./volumes/db/config:/docker-entrypoint-initdb.d/
+      - ./volumes/db/data:/var/lib/postgres/data
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_DB=postgres
+      - APP_DB_USER=docker
+      - APP_DB_PASS=docker
+      - APP_DB_NAME=docker
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 300M
+        reservations:
+          cpus: '0.1'
+          memory: 100M
+    restart: always
+
+  frontend:
+    container_name: frontend
+    image: karimarous/formation-frontend:1.0.0
+    ports:
+      - "4200:4200"
+    restart: always
+    environment:
+      - API_TARGET=http://localhost:3000 
+
+    deploy:
+      resources:
+        limits:
+          cpus: '0.1'
+          memory: 200M
+        reservations:
+          cpus: '0.05'
+          memory: 100M
+    depends_on:
+    - backend
