@@ -60,10 +60,13 @@ In this workshop, we used Namescheap as domain name provider
 
 You need to buy your own domain
 
-2.2.2 We need to go the domain purchased and click on Advanced DNS. Then we need to create 2 records one for backend and one for the frontend microservices. ENsure to put the pulic IP of the EC2 instance in the value section of each records
+2.2.2 Create records
 
-2.2.4 Configure Nginx reverse proxy
-2.2.4.1 For backend
+We need to go the domain purchased and click on Advanced DNS. Then we need to create 2 records one for backend and one for the frontend microservices. Ensure to put the pulic IP of the EC2 instance in the value section of each records
+
+2.2.3 Configure Nginx reverse proxy
+
+2.2.3.1 For backend
 
 You need to copy the following code inside /etc/nginx/sites-available/backend.domainpurchased
 ```bash
@@ -90,7 +93,7 @@ nginx -t
 systemctl reload nginx
 ```
 
-2.2.4.2 For frontend
+2.2.3.2 For frontend
 
 You need to copy the following code inside /etc/nginx/sites-available/frontend.domainpurchased
 ```bash
@@ -117,7 +120,7 @@ nginx -t
 systemctl reload nginx
 ```
 
-2.2.5 Configure HTTPS using Certbot
+2.2.4 Configure HTTPS using Certbot
 
 ```bash
 certbot --nginx -d frontend.domainpurchased
