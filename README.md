@@ -24,7 +24,7 @@ In this section, you need to clone the project in your pc then access the projec
   cd ..
   
   # Access the backend repo
-  cd frontend
+  cd backend
   docker build -t user/backend:1.0.0 .
   docker push user/backend:1.0.0
 ```
