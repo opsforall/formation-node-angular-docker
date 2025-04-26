@@ -21,6 +21,30 @@ This project contains a Step-by-step guide of the live workshop "How to deploy A
   PS: I don't have any .env file in the project
 ```
 
+In case you got lost wit Copilot output just replace the vaule of sequelize with : 
+
+```bash
+export const sequelize = new Sequelize(
+  process.env.APP_DB_NAME 
+  process.env.APP_DB_USER 
+  process.env.APP_DB_PASS 
+  {
+    host: process.env.DB_HOST 
+    dialect: process.env.DB_DIALECT 
+  }
+);
+```
+and go to docker-compose.yml file in the root folder and add this block to the backend service:
+ 
+```bash
+    environment:
+      - APP_DB_NAME=my_database
+      - APP_DB_USER=my_user
+      - APP_DB_PASS=my_password
+      - DB_HOST=db
+      - DB_DIALECT=postgres
+```
+
 1.2.3 Apply the suggested solution to database.js and docker-compose.yml
 
 1.2.4 Run these commands
@@ -38,10 +62,13 @@ This project contains a Step-by-step guide of the live workshop "How to deploy A
 
 1.3.1 Open the frontend repo and go to proxy.conf.json that located under ./frontend/proxy.conf.json of the root project
 
-1.3.2 Open Copilot and type this prompt that will help us to put a dynamic config of the backend url
+1.3.2 We will use the same concepts to configure the backend URL
 
+Just replace the vaule of the target with : "${API_TARGET}"  and go to docker-compose.yml file in the root folder and add this block to the frontend service:
+ 
 ```bash
-  Hey, I want to configure the backend url env variable in this file that will be configured in docker-compose.yml
+    environment:
+      - API_TARGET=http://backend:3000
 ```
 
 1.3.3 Apply the suggested solution to proxy.conf.json and docker-compose.yml
