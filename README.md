@@ -10,7 +10,9 @@ This project contains a Step-by-step guide of the live workshop "How to deploy A
 ### 1. let's code using Copilot and run the project
 
 1.1 Open the project in VS Code
+
 1.2 We're going to add some config in the backend and the frontend project
+
 1.2.1 Open the backend repo and go to database.js that located under ./backend/src/database/database.js of the root project
 
 1.2.2 Open Copilot and type this prompt that will help us to put a dynamic config of the database connexion
