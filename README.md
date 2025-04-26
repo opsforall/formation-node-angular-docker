@@ -7,27 +7,55 @@ This project contains a Step-by-step guide of the live workshop "How to deploy A
 
 
 ## 🚀 Step-by-step Deployment Guide
+### 1. let's code using Copilot and run the project
 
-### 1. Build and push the Angular and Node js apps
-In this section, you need to clone the project in your pc then access the project and just run the following commands
+1.1 Open the project in VS Code
+1.2 We're going to add some config in the backend and the frontend project
+1.2.1 Open the backend repo and go to database.js that located under ./backend/src/database/database.js of the root project
 
+1.2.2 Open Copilot and type this prompt that will help us to put a dynamic config of the database connexion
+```bash
+  Hey, I want to replace the database config dynamically from env variables that were configured in docker-compose.yml
+  PS: I don't have any .env file in the project
+```
+
+1.2.3 Apply the suggested solution to database.js and docker-compose.yml
+
+1.2.4 Run these commands
 ```bash
   # Login to docker registry
   docker login
-  # Access the frontend repo
-  cd frontend
-
-  docker build -t user/frontend:1.0.0 .
-  docker push user/frontend:1.0.0
-
-  # Go back to the root directory
-  cd ..
   
   # Access the backend repo
   cd backend
-  docker build -t user/backend:1.0.0 .
-  docker push user/backend:1.0.0
+  docker build -t karimarous/backend:1.0.0 .
+  docker push karimarous/backend:1.0.0
+  cd ..
+  docker-compose up -d
+```       
+
+1.3.1 Open the frontend repo and go to proxy.conf.json that located under ./frontend/proxy.conf.json of the root project
+
+1.3.2 Open Copilot and type this prompt that will help us to put a dynamic config of the backend url
+
+```bash
+  Hey, I want to configure the backend url env variable in this file that will be configured in docker-compose.yml
 ```
+
+1.3.3 Apply the suggested solution to proxy.conf.json and docker-compose.yml
+
+1.3.4 Run these commands
+```bash
+  # Login to docker registry
+  docker login
+  
+  # Access the backend repo
+  cd frontend
+  docker build -t karimarous/frontend:1.0.0 .
+  docker push karimarous/frontend:1.0.0
+  cd ..
+  docker-compose up -d
+```  
 
 ### 2. Deploy the applications in an EC2 instance
 2.1 You need to access the EC2 instance and install the following packages 
