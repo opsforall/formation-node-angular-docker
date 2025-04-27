@@ -54,8 +54,8 @@ and go to docker-compose.yml file in the root folder and add this block to the b
   
   # Access the backend repo
   cd backend
-  docker build -t karimarous/backend:1.0.0 .
-  docker push karimarous/backend:1.0.0
+  docker build -t username/formation-backend:1.0.0 .
+  docker push username/formation-backend:1.0.0
   cd ..
   docker-compose up -d
 ```       
@@ -80,8 +80,8 @@ Just replace the vaule of the target with : "${API_TARGET}"  and go to docker-co
   
   # Access the backend repo
   cd frontend
-  docker build -t karimarous/frontend:1.0.0 .
-  docker push karimarous/frontend:1.0.0
+  docker build -t username/formation-frontend:1.0.0 .
+  docker push username/formation-frontend:1.0.0
   cd ..
   docker-compose up -d
 ```  
