@@ -1,12 +1,12 @@
 import Sequelize from 'sequelize';
 
 export const sequelize = new Sequelize(
-  'docker',
-  'docker',
-  'docker',
+  process.env.APP_DB_NAME, 
+  process.env.APP_DB_USER,
+  process.env.APP_DB_PASS, 
   {
-    host: 'db',
-    dialect: 'postgres',
+    host: process.env.DB_HOST, 
+    dialect: process.env.DB_DIALECT, 
   }
 );
 

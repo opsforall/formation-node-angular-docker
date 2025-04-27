@@ -12,6 +12,12 @@ services:
         reservations:
           cpus: '0.1'
           memory: 100M
+    environment:
+      - DB_NAME=my_database
+      - DB_USER=my_user
+      - DB_PASSWORD=my_password
+      - DB_HOST=db
+      - DB_DIALECT=postgres
     depends_on:
       - db
     restart: always
@@ -55,5 +61,7 @@ services:
         reservations:
           cpus: '0.05'
           memory: 100M
+    environment:
+      - API_TARGET=http://backend:3000
     depends_on:
     - backend
